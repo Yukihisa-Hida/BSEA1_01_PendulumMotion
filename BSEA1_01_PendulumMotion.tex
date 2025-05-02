@@ -16,7 +16,41 @@
 
 \section{原理}
 
+振子の振れ幅を$\theta(t)$, 棒の長さを$L$, 棒の重さを$m$, 粘性摩擦係数を$b$とする
+と, 運動方程式は次式になる.
+
+\begin{equation}
+  \frac{3}{1}mL^2\frac{d^2\theta}{dt^2}+b\frac{d\theta}{dt}+mg\frac{L}{2}sin\theta=0
+\end{equation}
+
+整理すると
+
+\begin{equation}
+  \frac{d^2\theta}{dt^2}+\frac{3b}{mL^2}\frac{d\theta}{dt}+\frac{3g}{2L}sin\theta=0
+\end{equation}
+
+ここで
+
+\begin{itemize}
+  \item $\alpha=\frac{3b}{mL^2}$：減衰係数
+  \item $\omega_0=\sqrt{\frac{3g}{2L}}$：非減衰時の自然振動数（大振幅でもおおよその指標になる）
+\end{itemize}
+
+
 \section{方法}
+
+金属棒の端を角度検出センサに取り付け, 棒が振動した際の時間とともに変化する角度に対応したデータ（電圧値）をマイコンで読み取る.
+マイコン内に保存されたデータをパソコンに保存し測定データとする.
+
+電圧はセンサの抵抗値が$0\Omega$のとき$0V$, $10k\Omega$のとき電源電圧である$3V$となり, それ
+ぞれ角度が$0°$と$360°$に対応している. この電圧値は$10$bit AD変換後の値として記
+録されるため, マイコンに記録された角度データの値を$s$とすれば,
+
+\begin{equation}
+  \theta=360°\times\frac{s}{2^{10}-1}
+\end{equation}
+
+により角度を求めることができる.
 
 \section{結果}
 
